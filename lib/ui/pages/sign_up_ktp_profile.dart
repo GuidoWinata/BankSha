@@ -61,7 +61,12 @@ class SignUpKtpProfile extends StatelessWidget {
             ),
           ),
           SizedBox(height: 60),
-          CustomTextButton(title: 'Skip for Now'),
+          CustomTextButton(
+            title: 'Skip for Now',
+            onPressed: () {
+              Navigator.pushNamed(context, '/sign-up-success');
+            },
+          ),
         ],
       ),
     );
