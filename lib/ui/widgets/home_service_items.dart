@@ -15,20 +15,23 @@ class HomeServiceItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(bottom: 8),
-          height: 70,
-          width: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: whiteColor,
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 8),
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: whiteColor,
+            ),
+            child: Center(child: Image.asset(iconUrl, width: 26)),
           ),
-          child: Center(child: Image.asset(iconUrl, width: 26)),
-        ),
-        Text(title, style: blackTextStyle.copyWith(fontWeight: medium)),
-      ],
+          Text(title, style: blackTextStyle.copyWith(fontWeight: medium)),
+        ],
+      ),
     );
   }
 }

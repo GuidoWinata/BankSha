@@ -1,6 +1,8 @@
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widgets/home_latest_transactions.dart';
 import 'package:bank_sha/ui/widgets/home_service_items.dart';
+import 'package:bank_sha/ui/widgets/home_tips_items.dart';
+import 'package:bank_sha/ui/widgets/home_user_items.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,7 +11,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       bottomNavigationBar: BottomAppBar(
         color: whiteColor,
         shape: const CircularNotchedRectangle(),
@@ -65,61 +66,72 @@ class HomePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         children: [
-          buildProfile(),
+          buildProfile(context),
           buildWalletCard(),
           buildLevel(),
-          buildServices(),
+          buildServices(context),
           buildLatestTransaction(),
+          buildSendAgain(),
+          buildFriendlyTips(),
         ],
       ),
     );
   }
 
-  Widget buildProfile() {
-    return Container(
-      margin: const EdgeInsets.only(top: 40),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Guido,', style: greyTextStyle.copyWith(fontSize: 16)),
-              const SizedBox(height: 2),
-              Text(
-                'winataputra',
-                style: blackTextStyle.copyWith(
-                  fontSize: 20,
-                  fontWeight: semiBold,
+  Widget buildProfile(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/profile');
+      },
+      child: Container(
+        margin: const EdgeInsets.only(top: 40),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Guido,', style: greyTextStyle.copyWith(fontSize: 16)),
+                const SizedBox(height: 2),
+                Text(
+                  'winataputra',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: semiBold,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              width: 60,
+              height: 60,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/img_profile.png'),
                 ),
               ),
-            ],
-          ),
-          Container(
-            width: 60,
-            height: 60,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage('assets/img_profile.png'),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: whiteColor,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.check_circle,
+                      color: greenColor,
+                      size: 14,
+                    ),
+                  ),
+                ),
               ),
             ),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: whiteColor,
-                ),
-                child: Center(
-                  child: Icon(Icons.check_circle, color: greenColor, size: 14),
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -204,7 +216,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildServices() {
+  Widget buildServices(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 30),
       child: Column(
@@ -221,7 +233,9 @@ class HomePage extends StatelessWidget {
               HomeServiceItems(
                 iconUrl: 'assets/ic_topup.png',
                 title: 'Top Up',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/topup');
+                },
               ),
               HomeServiceItems(
                 iconUrl: 'assets/ic_send.png',
@@ -296,6 +310,87 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSendAgain() {
+    return Container(
+      margin: EdgeInsets.only(top: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Send Again',
+            style: blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+          ),
+          const SizedBox(height: 14),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: const [
+                HomeUserItems(
+                  imageurl: 'assets/img_friend1.png',
+                  username: 'yuanita',
+                ),
+                HomeUserItems(
+                  imageurl: 'assets/img_friend2.png',
+                  username: 'jani',
+                ),
+                HomeUserItems(
+                  imageurl: 'assets/img_friend3.png',
+                  username: 'urip',
+                ),
+                HomeUserItems(
+                  imageurl: 'assets/img_friend4.png',
+                  username: 'masa',
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildFriendlyTips() {
+    return Container(
+      margin: EdgeInsets.only(top: 30, bottom: 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Friendly Tips',
+            style: blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+          ),
+          const SizedBox(height: 14),
+          Wrap(
+            spacing: 17,
+            runSpacing: 18,
+            children: [
+              HomeTipsItems(
+                imageUrl: 'assets/img_tips1.png',
+                title: 'Best tips for using a credit card',
+                url: 'https://pub.dev/',
+              ),
+              HomeTipsItems(
+                imageUrl: 'assets/img_tips2.png',
+                title: 'Spot the good pie of finance model',
+                url: 'https://pub.dev/',
+              ),
+              HomeTipsItems(
+                imageUrl: 'assets/img_tips3.png',
+                title: 'Great hack to get better advices',
+                url: 'https://pub.dev/',
+              ),
+              HomeTipsItems(
+                imageUrl: 'assets/img_tips4.png',
+                title: 'Save more penny buy this instead',
+                url: 'https://pub.dev/',
+              ),
+            ],
           ),
         ],
       ),
