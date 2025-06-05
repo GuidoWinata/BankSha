@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class TopUpAmountPage extends StatefulWidget {
-  const TopUpAmountPage({super.key});
+class TransferAmountPage extends StatefulWidget {
+  const TransferAmountPage({super.key});
 
   @override
-  State<TopUpAmountPage> createState() => _TopUpAmountPageState();
+  State<TransferAmountPage> createState() => _TransferAmountPageState();
 }
 
-class _TopUpAmountPageState extends State<TopUpAmountPage> {
+class _TransferAmountPageState extends State<TransferAmountPage> {
   final TextEditingController amountController = TextEditingController(
     text: '0',
   );
@@ -186,14 +186,12 @@ class _TopUpAmountPageState extends State<TopUpAmountPage> {
           ),
           const SizedBox(height: 50),
           CustomFilledButton(
-            title: 'Checkout Now',
+            title: 'Continue',
             onPressed: () async {
               if (await Navigator.pushNamed(context, '/pin') == true) {
-                await launchUrlString('https://demo.midtrans.com/');
-
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  '/topup-success',
+                  '/transfer-success',
                   (context) => false,
                 );
               }
