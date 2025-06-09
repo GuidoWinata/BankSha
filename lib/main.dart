@@ -1,4 +1,5 @@
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/pages/data_provider_menu.dart';
 import 'package:bank_sha/ui/pages/home_page.dart';
 import 'package:bank_sha/ui/pages/onboarding_page.dart';
 import 'package:bank_sha/ui/pages/pin_page.dart';
@@ -6,6 +7,7 @@ import 'package:bank_sha/ui/pages/profile_edit_page.dart';
 import 'package:bank_sha/ui/pages/profile_edit_pin_page.dart';
 import 'package:bank_sha/ui/pages/profile_edit_success_page.dart';
 import 'package:bank_sha/ui/pages/profile_page.dart';
+import 'package:bank_sha/ui/pages/select_data_package_page.dart';
 import 'package:bank_sha/ui/pages/sign_in_page.dart';
 import 'package:bank_sha/ui/pages/sign_up_ktp_profile.dart';
 import 'package:bank_sha/ui/pages/sign_up_page.dart';
@@ -13,6 +15,7 @@ import 'package:bank_sha/ui/pages/sign_up_set_profile.dart';
 import 'package:bank_sha/ui/pages/sign_up_success_page.dart';
 import 'package:bank_sha/ui/pages/splash_page.dart';
 import 'package:bank_sha/ui/pages/top_up_amount_page.dart';
+import 'package:bank_sha/ui/pages/top_up_data_success_page.dart';
 import 'package:bank_sha/ui/pages/top_up_page.dart';
 import 'package:bank_sha/ui/pages/top_up_success.dart';
 import 'package:bank_sha/ui/pages/transfer_amount_page.dart';
@@ -62,6 +65,9 @@ class MyApp extends StatelessWidget {
         '/transfer': (context) => TransferPage(),
         '/transfer-amount': (context) => TransferAmountPage(),
         '/transfer-success': (context) => TransferSuccessPage(),
+        '/data-provider': (context) => DataProviderMenu(),
+        '/select-package': (context) => SelectDataPackagePage(),
+        '/topup-data-success': (context) => TopUpDataSuccessPage(),
       },
     );
   }

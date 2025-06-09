@@ -1,3 +1,4 @@
+import 'package:bank_sha/shared/shared_method.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widgets/home_latest_transactions.dart';
 import 'package:bank_sha/ui/widgets/home_service_items.dart';
@@ -168,7 +169,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 21),
           Text('Balance', style: whiteTextStyle),
           Text(
-            'Rp 784.500',
+            formatCurrency(784000),
             style: whiteTextStyle.copyWith(fontSize: 24, fontWeight: semiBold),
           ),
         ],
@@ -198,7 +199,7 @@ class HomePage extends StatelessWidget {
                 style: greenTextStyle.copyWith(fontWeight: semiBold),
               ),
               Text(
-                'of Rp 20.000',
+                'of ${formatCurrency(28000)}',
                 style: blackTextStyle.copyWith(fontWeight: semiBold),
               ),
             ],
@@ -415,11 +416,63 @@ class MoreDialog extends StatelessWidget {
       insetPadding: EdgeInsets.zero,
       alignment: Alignment.bottomCenter,
       content: Container(
+        padding: EdgeInsets.all(30),
         height: 326,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color: lightBackgroundColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Do More With Us',
+              style: blackTextStyle.copyWith(
+                fontWeight: semiBold,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 13),
+            Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              children: [
+                HomeServiceItems(
+                  iconUrl: 'assets/ic_data_smartphone.png',
+                  title: 'Data',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/data-provider');
+                  },
+                ),
+                HomeServiceItems(
+                  iconUrl: 'assets/ic_data_water.png',
+                  title: 'Water',
+                  onTap: () {},
+                ),
+                HomeServiceItems(
+                  iconUrl: 'assets/ic_data_stream.png',
+                  title: 'Stream',
+                  onTap: () {},
+                ),
+                HomeServiceItems(
+                  iconUrl: 'assets/ic_data_tv.png',
+                  title: 'Movie',
+                  onTap: () {},
+                ),
+                HomeServiceItems(
+                  iconUrl: 'assets/ic_data_food.png',
+                  title: 'Food',
+                  onTap: () {},
+                ),
+                HomeServiceItems(
+                  iconUrl: 'assets/ic_data_travel.png',
+                  title: 'Travel',
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
